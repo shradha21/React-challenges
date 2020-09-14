@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>12-word-count</title>
+    </head>
+    <body>
+        <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+
+    class WordCharacter extends React.Component {
+        constructor() {
+        super()
+        this.state = {
+            sentence: '',
+            char: '',
+            words: ''
+          }
+        }
+
+        handleChange = (e) => {
+            const sentence = e.target.value
+            const char = sentence.length
+            let words = 0
+            const word = sentence.split(' ')
+            word.map((ele) => {
+                return ele !== '' ? words++ : words
+            })
+            this.setState({sentence,char,words})
+        }    
+      
+    render() {
+        return (
+            <div>
+                <h1> Word & Chars Counter </h1>
+                <textarea row= "5" col= "5"  value= {this.state.sentence} onChange= {this.handleChange} /> <br/>
+                
+                <span> You have written {this.state.char} characters and {this.state.words} words </span>
+            </div>
+         )
+    }
+    }
+
+    ReactDOM.render(<WordCharacter />,document.getElementById("root")) 
+
+    </script>
+    </body>
+</html>

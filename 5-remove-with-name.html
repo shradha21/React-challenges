@@ -1,0 +1,85 @@
+<html>
+<title>
+</title>
+
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+
+  //const rootHandle =  document.getElementById('root');
+
+        class Users extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    users : [
+                        { id: 1, name: 'user1', email: 'user1@gmail.com'},
+                        { id: 2, name: 'user2', email: 'user2@gmail.com'},
+                        { id: 3, name: 'user3', email: 'user3@gmail.com'},
+                        { id: 4, name: 'user4', email: 'user4@gmail.com'}
+                   ]
+                }
+            }
+
+            handleRemove = (name) => {
+                const userName = prompt('Enter the name to confirm')
+                if(userName == name) {
+                    this.setState((prevState) => {
+                        return {
+                        users: prevState.users.filter((user) => {
+                            return user.name != name
+                            })
+                        }
+                    })
+                }else {
+                    alert('invalid name')
+                }
+            }
+
+            render() {
+                return (
+                <div>
+                    <h1>Remove-By-Name</h1>
+                    <h2>Listing Users - {this.state.users.length}</h2>
+                    <table border = "1">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>name</th>
+                                <th>action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                               this.state.users.map((user,i) => {
+                                    return(
+                                        <tr>
+                                            <td key = {user.id}>{user.id}</td>
+                                            <td>{user.name}</td>
+                                            <td><button onClick = {() => {this.handleRemove(user.name)}}>remove</button></td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        
+                        </tbody>
+
+                    </table>
+                </div>  
+            )                
+        }
+    }
+        
+    ReactDOM.render(<Users />,document.getElementById("root"))
+    
+  </script>
+</body>
+
+</html>

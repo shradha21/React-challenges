@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>11-Face-Game</title>
+    </head>
+    <body>
+        <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+
+  //const rootHandle =  document.getElementById('root');
+
+    const users = [
+        {
+            id: 1,
+            name: 'john',
+            profile: 'https://go.aws/3bXmjQo',
+        },
+        {
+            id: 2,
+            name: 'jack',
+            profile: 'https://go.aws/3e2alqe',
+        },
+        {
+            id: 3,
+            name: 'sam',
+            profile: 'https://go.aws/2RfNvlo',
+        }
+    ]
+
+    function FaceGame(props) {
+        const index = Math.floor(Math.random() * props.data.length)
+        const user = props.data[index]
+
+        const handleClick = (data) => {
+            const value = prompt('Guess my name')
+            {data == value ? alert('you guessed correctly'): alert(`Your guess is wrong my name is ${data}`)}
+        }
+
+        return (
+            <div>
+                <h1>Face Game</h1>
+
+                <span>Guess the user's name</span>
+
+                <div>
+                    <img src = {user.profile} /> <br/>
+                    <button onClick = {() => handleClick(user.name)}>Guess</button>
+                </div>
+
+            </div>
+        )
+    }
+
+    ReactDOM.render(<FaceGame data = {users} />,document.getElementById("root"))
+
+
+    </script>
+    </body>
+</html>

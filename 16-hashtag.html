@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>16-hashtag</title>
+    </head>
+    <body>
+        <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+
+    class HashTag extends React.Component {
+        constructor(){
+            super()
+            this.state = {
+                text: '',
+                result: ''
+                
+            }
+        }
+
+        handleChange = (e) => {
+            const text = e.target.value
+            this.setState({
+                text
+            })
+        
+
+        let result = '#'
+        const word = text.split(' ')
+
+        for(let i=0; i<word.length; i++) {
+            result = result + word[i].charAt(0).toUpperCase() + word[i].slice(1).toLowerCase()
+        }
+         this.setState({
+             result
+         })
+        }
+        render() {
+            return (
+                <div>
+                    <h1> HashTag Generator</h1>
+
+                    <input 
+                        type = "text"  
+                        value = {this.state.text} 
+                        onChange = {this.handleChange}
+                        placeholder = "enter a string"
+                    /> <br/>
+                    
+                    <h2>{this.state.result}</h2>
+
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<HashTag />,document.getElementById("root")) 
+
+    </script>
+    </body>
+</html>

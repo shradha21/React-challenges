@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>14-remaining-character</title>
+    </head>
+    <body>
+        <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+
+    class RemainingCharacter extends React.Component {
+        constructor(){
+            super()
+            this.state = {
+                text: '' ,
+                remaining_char: 20
+            }
+        }
+
+        handleChange = (e) => {
+           const text = e.target.value
+           const remaining_char = (20 - (text.length))
+           this.setState({
+               text,
+               remaining_char
+           })
+
+        }
+
+
+        render() {
+            return (
+                <div>
+                    <h1>Remaining Character</h1>
+
+                    <textarea 
+                        row = "5"
+                        col = "5"
+                        name = "text"
+                        value = {this.state.text}
+                        onChange = {this.handleChange}
+                      /> <br />
+
+                    <span>{this.state.remaining_char} chars left</span>  
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<RemainingCharacter />,document.getElementById("root")) 
+
+    </script>
+    </body>
+</html>

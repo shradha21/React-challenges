@@ -1,0 +1,54 @@
+<html>
+<title>
+</title>
+
+<body>
+    <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+
+  //const rootHandle =  document.getElementById('root');
+
+   
+        const users = [
+            { id: 1, name: 'user1', email: 'user1@gmail.com'},
+            { id: 2, name: 'user2', email: 'user2@gmail.com'},
+            { id: 3, name: 'user3', email: 'user3@gmail.com'},
+            { id: 4, name: 'user4', email: 'user4@gmail.com'}
+        ]
+
+        function UsersList(props) {
+
+            const showDetails = function(user){
+                alert(`email id - ${user.email}`)
+            }
+
+
+
+            return (
+                <div>
+                    <h1>Show Email</h1>
+                    <h2>Listing Users - {props.data.length}</h2>
+                    <ul>
+                        {
+                            props.data.map(user => {
+                                return <li>{user.name} <button onClick= {()=> {showDetails(user)}}>show email</button></li>
+                            })
+                        }    
+                    </ul>
+                </div>    
+            )                
+        }
+        
+        ReactDOM.render(<UsersList data = {users}/>,document.getElementById("root"))
+    
+  </script>
+</body>
+
+</html>

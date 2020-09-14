@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>9-Single-User</title>
+    </head>
+    <body>
+        <div id="root"></div>
+
+    <!-- https://unpkg.com/react@16.13.1/umd/react.development.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- https://unpkg.com/babel-standalone@6.26.0/babel.js -->
+    <script src="./js/babel.js"></script>
+    <script type="text/babel">
+
+  //const rootHandle =  document.getElementById('root');
+
+    const user = {
+        id: 1,
+        name: 'Sam',
+        image: 'https://go.aws/3bXmjQo',
+        age: '25',
+        skills: ['js', 'react', 'node']
+    }
+
+    function UserDetail(props) {
+        return (
+            <div>
+                <img src= {props.data.image} />
+                <h1>{props.data.name} - {props.data.age} </h1>
+
+                <h2>Skills</h2>
+                <ul>
+                    {
+                        props.data.skills.map((skill) => {
+                            return <li>{skill} </li>
+                        })
+                    }
+                
+                </ul>
+            </div>
+        )
+    }
+
+    ReactDOM.render(<UserDetail data = {user} />,document.getElementById("root"))
+
+
+    </script>
+    </body>
+</html>
